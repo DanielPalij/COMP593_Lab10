@@ -3,9 +3,12 @@ import requests
 poke_api = 'https://pokeapi.co/api/v2/pokemon/'
 
 def main():
-    pinfo = get_pokemon_info("Pikachu")
-    pinfo = get_pokemon_info(123)
-    names = get_pokemon_names()
+    #pinfo = get_pokemon_info("Pikachu")
+   # pinfo = get_pokemon_info(123)
+   # names = get_pokemon_names()
+    
+    download_pokemon_artwork('ditto', '')
+    
     return
 
 def get_pokemon_info(pname):
@@ -46,7 +49,15 @@ def get_pokemon_names(offset=0, limit=100000):
         return
     
 
-def get_pokemon_artwork(pokemon_name):
+def download_pokemon_artwork(pokemon_name):
+    
+    pokemon_info = get_pokemon_info(pokemon_name)
+    if pokemon_info is None:
+        return
+
+    artwork_url = pokemon_info['sprites']['other']['official-artwork']['front_default']
+
+
 
     return
 
