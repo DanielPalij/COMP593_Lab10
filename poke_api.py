@@ -5,15 +5,13 @@ import os
 poke_api = 'https://pokeapi.co/api/v2/pokemon/'
 
 def main():
-    pinfo = get_pokemon_info("Pikachu")
-    pinfo = get_pokemon_info(123)
-    names = get_pokemon_names()
     
-    download_pokemon_artwork('ditto', r'C:\Users\Danie\OneDrive\Desktop\Random')
+    download_pokemon_artwork('Pikachu', r'C:\Users\Danie\OneDrive\Desktop\Random')
     
     return
 
 def get_pokemon_info(pname):
+    
     pname = str(pname).strip().lower()
 
     url = poke_api + pname
@@ -60,12 +58,12 @@ def download_pokemon_artwork(pokemon_name, save_dir):
     # Extract the artwork URL from the info dictionary
     artwork_url = pokemon_info['sprites']['other']['official-artwork']['front_default']
 
-    
+    # Download the artwork
     image_bytes = image_lib.download_image(artwork_url)
     if image_bytes is None: 
         return
     
-
+    # Determine image file path
     file_ext = artwork_url.split('.')[-1]
     image_path = os.path.join(save_dir, f'{pokemon_name}.{file_ext}')
     
